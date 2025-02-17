@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.hateoas.EntityModel;
+//import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 class EmployeeController {
@@ -35,12 +37,24 @@ class EmployeeController {
 
     // Single item
 
-    @GetMapping("/employees/{id}")
-    Employee one(@PathVariable Long id) {
+//    @GetMapping("/employees/{id}")
+//    Employee one(@PathVariable Long id) {
+//
+//        return repository.findById(id)
+//                .orElseThrow(() -> new EmployeeNotFoundException(id));
+//    }
 
-        return repository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException(id));
-    }
+    // Single item (RESTful version)
+//    @GetMapping("/employees/{id}")
+//    EntityModel<Employee> one(@PathVariable Long id) {
+//
+//        Employee employee = repository.findById(id) //
+//                .orElseThrow(() -> new EmployeeNotFoundException(id));
+//
+//        return EntityModel.of(employee, //
+//                linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(),
+//                linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
+//    }
 
     @PutMapping("/employees/{id}")
     Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
