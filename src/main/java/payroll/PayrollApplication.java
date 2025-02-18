@@ -11,5 +11,3 @@ public class PayrollApplication {
 	}
 
 }
-
-// A last commit for the nonrest. At this moment, this project will contain RESTful service.

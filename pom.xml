@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>nonrest</artifactId>
+	<artifactId>rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>payroll</name>
 	<description>Following the tutorial: Building REST services with Spring</description>
@@ -49,6 +49,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
