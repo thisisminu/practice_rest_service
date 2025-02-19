@@ -3,7 +3,7 @@ package payroll;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -28,6 +27,13 @@ class EmployeeController {
 
     // Aggregate root
     // tag::get-aggregate-root[]
+//    @GetMapping("/employees")
+//    List<Employee> all() {
+//        return repository.findAll();
+//    }
+//    // end::get-aggregate-root[]
+
+
     // Every item  (RESTful version)
     @GetMapping("/employees")
     CollectionModel<EntityModel<Employee>> all() {
@@ -40,13 +46,23 @@ class EmployeeController {
 
         return CollectionModel.of(employees, linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
     }
-    // end::get-aggregate-root[]
+
 
 
     @PostMapping("/employees")
     Employee newEmployee(@RequestBody Employee newEmployee) {
         return repository.save(newEmployee);
     }
+
+    // Single item
+
+//    @GetMapping("/employees/{id}")
+//    Employee one(@PathVariable Long id) {
+//
+//        return repository.findById(id)
+//                .orElseThrow(() -> new EmployeeNotFoundException(id));
+//    }
+
 
 
     // Single item (RESTful version)
